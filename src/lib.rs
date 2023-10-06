@@ -146,12 +146,22 @@ where
 
     fn set_window(&mut self, x0: u16, y0: u16, x1: u16, y1: u16) -> Result {
         println!("x: {} y: {} w: {} h: {}", x0, y0, x1, y1);
+        println!("x upper: {} x lower:  y upper: {} y lower: {} w upper: {} w lower: {} h upper: {} h lower: {}",
+            (x0 & 0xff) as u8,
+            (x1 >> 8) as u8,
+            (x1 & 0xff) as u8,
+            (y0 >> 8) as u8,
+            (y0 & 0xff) as u8,
+            (y1 >> 8) as u8,
+            (y1 & 0xff) as u8
+        );
+
         self.command(
             Command::ColumnAddressSet,
             &[
                 (x0 >> 8) as u8,
-                (x1 >> 8) as u8,
                 (x0 & 0xff) as u8,
+                (x1 >> 8) as u8,
                 (x1 & 0xff) as u8,
             ],
         )?;
