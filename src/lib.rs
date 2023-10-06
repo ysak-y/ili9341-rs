@@ -6,6 +6,7 @@ use embedded_hal::digital::v2::OutputPin;
 use core::iter::once;
 use display_interface::DataFormat::{U16BEIter, U8Iter};
 use display_interface::WriteOnlyDataCommand;
+use std::println;
 
 #[cfg(feature = "graphics")]
 mod graphics_core;
@@ -146,6 +147,7 @@ where
     }
 
     fn set_window(&mut self, x0: u16, y0: u16, x1: u16, y1: u16) -> Result {
+        println!("x: {} y: {} w: {} h: {}", x0, y0, x1, y1);
         self.command(
             Command::ColumnAddressSet,
             &[
@@ -158,10 +160,10 @@ where
         self.command(
             Command::PageAddressSet,
             &[
-                (y1 >> 8) as u8,
-                (y1 & 0xff) as u8,
                 (y0 >> 8) as u8,
                 (y0 & 0xff) as u8,
+                (y1 >> 8) as u8,
+                (y1 & 0xff) as u8,
             ],
         )
     }
