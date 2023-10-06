@@ -1,5 +1,3 @@
-#![no_std]
-
 use embedded_hal::blocking::delay::DelayMs;
 use embedded_hal::digital::v2::OutputPin;
 
