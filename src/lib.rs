@@ -149,19 +149,19 @@ where
         self.command(
             Command::ColumnAddressSet,
             &[
-                (x1 >> 8) as u8,
-                (x1 & 0xff) as u8,
                 (x0 >> 8) as u8,
                 (x0 & 0xff) as u8,
+                (x1 >> 8) as u8,
+                (x1 & 0xff) as u8,
             ],
         )?;
         self.command(
             Command::PageAddressSet,
             &[
-                (y0 >> 8) as u8,
-                (y0 & 0xff) as u8,
                 (y1 >> 8) as u8,
                 (y1 & 0xff) as u8,
+                (y0 >> 8) as u8,
+                (y0 & 0xff) as u8,
             ],
         )
     }
